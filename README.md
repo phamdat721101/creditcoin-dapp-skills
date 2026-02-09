@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <strong>A <a href="https://github.com/anthropics/skills">Claude Code skill</a> for building RWA dApps on Creditcoin Network.</strong>
+  <strong>A <a href="https://github.com/anthropics/skills">Claude Code skill</a> for building RWA dApps on Creditcoin Network</strong>
   <br>
   <a href="https://docs.creditcoin.org">Creditcoin Docs</a> · <a href="#quick-start">Quick Start</a> · <a href="https://github.com/gluwa/creditcoin">Creditcoin GitHub</a>
 </p>
