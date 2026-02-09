@@ -175,3 +175,4 @@ Source Chain (ETH) → Attestors → STARK Proof → USC Contract (Creditcoin)
 -   `references/creditcoin-setup.md` — Environment setup (MetaMask, RPC).
 -   `references/usc-smart-contract.md` — USC contract development guide.
 -   `references/usc-cross-chain.md` — Cross-chain capabilities and patterns.
+-   `references/usc-credit-scoring.md` — Cross-chain credit scoring with soulbound NFT tiers.

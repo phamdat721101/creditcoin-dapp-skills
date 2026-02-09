@@ -79,6 +79,15 @@ Once installed, start a Claude Code session and try:
 > Implement a unified credit identity that tracks repayments across 3 chains
 ```
 
+### Cross-Chain Credit Scoring
+
+```
+> Build a cross-chain credit score that aggregates repayments from ETH, BTC, SOL, and Polygon
+> Create a soulbound NFT that represents a user's credit tier
+> Deploy the CrossChainCreditScore system with relayer access control
+> Query a user's unified credit score from a frontend
+```
+
 ## Skill structure
 
 ```
@@ -89,7 +98,8 @@ creditcoin-dapp-skill/
 │   ├── creditcoin-client-sdk.md        # JS SDK guide
 │   ├── creditcoin-setup.md             # Setup guide
 │   ├── usc-smart-contract.md           # USC contract guide
-│   └── usc-cross-chain.md              # Cross-chain patterns
+│   ├── usc-cross-chain.md              # Cross-chain patterns
+│   └── usc-credit-scoring.md          # Cross-chain credit scoring
 ├── install.sh
 ├── assets/
 │   └── logo.png

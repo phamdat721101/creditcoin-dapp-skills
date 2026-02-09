@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creditcoin dApp Skill — Claude Code Skill for Building on Creditcoin Network</title>
+  <title>Creditcoin dApp Skill — Build Creditcoin dApps with AI</title>
   <meta name="description"
-    content="A Claude Code skill for building Real World Asset (RWA) and Universal Smart Contract (USC) cross-chain dApps on Creditcoin Network with Solidity and Ethers.js.">
-  <link rel="icon" type="image" href="assets/symbol.png">
-  <!-- Privacy-friendly analytics: no cookies, no personal data. See https://goatcounter.com -->
+    content="An AI agent skill that helps you build Real World Asset (RWA) and Universal Smart Contract (USC) cross-chain dApps on Creditcoin Network.">
+  <link rel="icon" type="image" href="../assets/symbol.png">
   <script data-goatcounter="https://creditcoin-dapp-skill.goatcounter.com/count" async
     src="//gc.zgo.at/count.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +16,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --navy: #213147;
@@ -42,14 +35,13 @@
       --gray-800: #1e2a3a;
       --accent-purple: #6366f1;
       --accent-cyan: #22d3ee;
+      --accent-orange: #f59e0b;
       --code-bg: #0d1520;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-sans);
@@ -60,705 +52,153 @@
       overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(11, 16, 24, 0.7);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(18, 170, 255, 0.06);
     }
-
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo img {
-      height: 26px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .nav-pill {
-      color: var(--gray-400);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: all 0.2s;
-    }
-
-    .nav-pill:hover {
-      color: var(--gray-100);
-      border-color: var(--gray-600);
-    }
-
-    .nav-cta {
-      background: var(--blue);
-      color: var(--white) !important;
-      border-color: var(--blue) !important;
-      font-weight: 600;
-    }
-
-    .nav-cta:hover {
-      opacity: 0.85;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      padding: 160px 0 60px;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(18, 170, 255, 0.12) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-    }
-
-    .hero-left h1 {
-      font-size: 52px;
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-      color: var(--white);
-    }
-
-    .hero-left h1 .gradient-text {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--accent-cyan) 50%, var(--light-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-left p {
-      font-size: 16px;
-      color: var(--gray-400);
-      line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 440px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-sans);
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: var(--white);
-      box-shadow: 0 0 24px rgba(18, 170, 255, 0.25);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 32px rgba(18, 170, 255, 0.4);
-    }
-
-    .btn-ghost {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--gray-200);
-      border: 1px solid var(--gray-600);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--gray-400);
-      color: var(--white);
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .hero-feature {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      background: var(--navy-card);
-      border: 1px solid rgba(18, 170, 255, 0.06);
-      border-radius: 14px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .hero-feature:hover {
-      border-color: rgba(18, 170, 255, 0.2);
-      transform: translateX(4px);
-    }
-
-    .hero-feature-icon {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(135deg, var(--blue-dim), rgba(99, 102, 241, 0.1));
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--blue);
-    }
-
-    .hero-feature-icon svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .hero-feature-text h4 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-100);
-      margin-bottom: 2px;
-    }
-
-    .hero-feature-text p {
-      font-size: 12px;
-      color: var(--gray-400);
-      margin: 0;
-    }
-
-    /* STATS BAR */
-    .stats {
-      padding: 40px 0;
-      border-top: 1px solid rgba(18, 170, 255, 0.06);
-      border-bottom: 1px solid rgba(18, 170, 255, 0.06);
-      margin-top: 20px;
-    }
-
-    .stats-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--white);
-    }
-
-    .stat-value .blue {
-      color: var(--blue);
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--gray-400);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    .stats-divider {
-      width: 1px;
-      height: 40px;
-      background: var(--gray-600);
-    }
-
-    /* DEMO VIDEO */
-    .demo {
-      padding: 100px 0 40px;
-    }
-
-    .demo-video {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      padding-top: 56.25%;
-      /* 16:9 */
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(18, 170, 255, 0.1);
-      box-shadow: 0 8px 48px rgba(0, 0, 0, 0.4), 0 0 80px rgba(18, 170, 255, 0.06);
-      background: var(--navy-card);
-    }
-
-    .demo-video iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* SERVICES */
-    .services {
-      padding: 100px 0;
-    }
-
-    .services-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--blue);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .section-header {
-      margin-bottom: 56px;
-    }
-
-    .section-header h2 {
-      font-size: 38px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .section-header p {
-      font-size: 16px;
-      color: var(--gray-400);
-      max-width: 480px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .service-card {
-      position: relative;
-      background: var(--navy-card);
-      border: 1px solid rgba(18, 170, 255, 0.06);
-      border-radius: 16px;
-      padding: 32px 28px;
-      transition: border-color 0.3s, transform 0.3s;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blue), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .service-card:hover {
-      border-color: rgba(18, 170, 255, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .service-card:hover::before {
-      opacity: 1;
-    }
-
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, rgba(18, 170, 255, 0.15), rgba(99, 102, 241, 0.1));
-      border: 1px solid rgba(18, 170, 255, 0.1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: var(--blue);
-    }
-
-    .service-icon svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .service-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .service-card p {
-      font-size: 13px;
-      color: var(--gray-400);
-      line-height: 1.6;
-    }
-
-    /* QUICKSTART */
-    .quickstart {
-      padding: 80px 0 100px;
-    }
-
-    .qs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .qs-left .services-label {
-      margin-bottom: 12px;
-    }
-
-    .qs-left h2 {
-      font-size: 38px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    .qs-left p {
-      font-size: 15px;
-      color: var(--gray-400);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    /* Terminal window */
-    .terminal {
-      background: #131a27;
-      border-radius: 14px;
-      border: 1px solid rgba(18, 170, 255, 0.08);
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(18, 170, 255, 0.04);
-    }
-
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      background: #0f1520;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
-
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .terminal-dots span {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
-
-    .terminal-dots span:nth-child(1) {
-      background: #ff5f57;
-    }
-
-    .terminal-dots span:nth-child(2) {
-      background: #febc2e;
-    }
-
-    .terminal-dots span:nth-child(3) {
-      background: #28c840;
-    }
-
-    .terminal-tabs {
-      display: flex;
-      gap: 2px;
-      align-items: center;
-      margin-left: 4px;
-    }
-
-    .terminal-tab {
-      padding: 5px 14px;
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      color: var(--gray-400);
-      font-family: var(--font-sans);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .terminal-tab.active {
-      border-color: var(--gray-600);
-      color: var(--gray-100);
-    }
-
-    .terminal-tab:hover:not(.active) {
-      color: var(--gray-200);
-    }
-
-    .terminal-body {
-      position: relative;
-      padding: 22px 22px 18px;
-      min-height: 160px;
-    }
-
-    .terminal-panel {
-      display: none;
-    }
-
-    .terminal-panel.active {
-      display: block;
-    }
-
-    .terminal-body code {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-200);
-      line-height: 1.8;
-      display: block;
-    }
-
-    .terminal-body .comment {
-      color: #3d4f63;
-    }
-
-    .terminal-body .prompt {
-      color: var(--blue);
-      user-select: none;
-    }
-
-    .terminal-copy {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      color: var(--gray-600);
-      cursor: pointer;
-      padding: 4px;
-      transition: color 0.2s;
-      display: flex;
-    }
-
-    .terminal-copy:hover {
-      color: var(--gray-200);
-    }
-
-    .terminal-subtitle {
-      text-align: center;
-      color: var(--gray-400);
-      font-size: 13px;
-      margin-top: 14px;
-    }
-
-    /* STACK */
-    .stack {
-      padding: 60px 0 100px;
-    }
-
-    .stack-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--navy-card);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(18, 170, 255, 0.06);
-    }
-
-    .stack-table th {
-      text-align: left;
-      padding: 14px 24px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-400);
-      background: rgba(0, 0, 0, 0.25);
-      font-weight: 600;
-    }
-
-    .stack-table td {
-      padding: 14px 24px;
-      font-size: 14px;
-      border-top: 1px solid rgba(18, 170, 255, 0.04);
-    }
-
-    .stack-table td:first-child {
-      color: var(--gray-400);
-      font-weight: 500;
-    }
-
-    .stack-table td:nth-child(2) {
-      color: var(--white);
-      font-weight: 600;
-      font-family: var(--font-mono);
-      font-size: 13px;
-    }
-
-    .stack-table td:nth-child(3) {
-      color: var(--gray-400);
-      font-size: 13px;
-    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
+    .nav-logo img { height: 26px; }
+    .nav-links { display: flex; gap: 8px; align-items: center; }
+    .nav-pill { color: var(--gray-400); text-decoration: none; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 999px; border: 1px solid transparent; transition: all 0.2s; }
+    .nav-pill:hover { color: var(--gray-100); border-color: var(--gray-600); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; border-color: var(--blue) !important; font-weight: 600; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; font-family: var(--font-sans); }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 0 24px rgba(18, 170, 255, 0.25); }
+    .btn-primary:hover { box-shadow: 0 0 32px rgba(18, 170, 255, 0.4); }
+    .btn-ghost { background: rgba(255, 255, 255, 0.04); color: var(--gray-200); border: 1px solid var(--gray-600); }
+    .btn-ghost:hover { border-color: var(--gray-400); color: var(--white); }
+
+    /* SECTION HEADER */
+    .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); font-weight: 600; margin-bottom: 12px; }
+    .section-header { margin-bottom: 56px; }
+    .section-header h2 { font-size: 38px; font-weight: 800; color: var(--white); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px; }
+    .section-header p { font-size: 16px; color: var(--gray-400); max-width: 520px; }
+
+    /* ==================== HERO ==================== */
+    .hero { position: relative; padding: 160px 0 80px; overflow: hidden; text-align: center; }
+    .hero-glow { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse at center, rgba(18, 170, 255, 0.12) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%); pointer-events: none; }
+    .hero h1 { font-size: 56px; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 20px; color: var(--white); position: relative; }
+    .hero h1 .gradient-text { background: linear-gradient(135deg, var(--blue) 0%, var(--accent-cyan) 50%, var(--light-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero > .container > p { font-size: 18px; color: var(--gray-400); line-height: 1.7; margin: 0 auto 36px; max-width: 600px; position: relative; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; position: relative; }
+
+    /* ==================== AI WORKFLOW ==================== */
+    .workflow { padding: 100px 0; border-top: 1px solid rgba(18, 170, 255, 0.06); }
+    .workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .workflow-step { position: relative; background: var(--navy-card); border: 1px solid rgba(18, 170, 255, 0.06); border-radius: 16px; padding: 36px 28px; text-align: center; transition: border-color 0.3s, transform 0.3s; }
+    .workflow-step:hover { border-color: rgba(18, 170, 255, 0.15); transform: translateY(-2px); }
+    .workflow-number { width: 40px; height: 40px; border-radius: 50%; background: var(--blue-dim); color: var(--blue); font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .workflow-step h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .workflow-step p { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
+    .workflow-step code { display: block; margin-top: 16px; background: var(--code-bg); border-radius: 8px; padding: 12px 16px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-200); text-align: left; }
+    .workflow-arrow { display: none; }
+
+    /* ==================== WHAT YOU CAN BUILD ==================== */
+    .capabilities { padding: 100px 0; }
+    .cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .cap-card { background: var(--navy-card); border: 1px solid rgba(18, 170, 255, 0.06); border-radius: 16px; overflow: hidden; transition: border-color 0.3s; }
+    .cap-card:hover { border-color: rgba(18, 170, 255, 0.15); }
+    .cap-card-header { padding: 28px 28px 0; cursor: pointer; display: flex; align-items: flex-start; gap: 16px; }
+    .cap-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--blue-dim), rgba(99, 102, 241, 0.1)); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--blue); }
+    .cap-icon svg { width: 20px; height: 20px; }
+    .cap-card-header h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .cap-card-header p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+    .cap-toggle { font-size: 12px; color: var(--blue); font-weight: 500; cursor: pointer; padding: 12px 28px; display: block; transition: color 0.2s; background: none; border: none; font-family: var(--font-sans); }
+    .cap-toggle:hover { color: var(--accent-cyan); }
+    .cap-code { display: none; padding: 0 20px 20px; }
+    .cap-code.open { display: block; }
+    .cap-code pre { background: var(--code-bg); border-radius: 10px; padding: 18px 20px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--gray-200); }
+    .cap-code pre .kw { color: var(--accent-purple); }
+    .cap-code pre .fn { color: var(--blue); }
+    .cap-code pre .str { color: #a5d6a7; }
+    .cap-code pre .cm { color: var(--gray-600); }
+    .cap-code pre .tp { color: var(--accent-cyan); }
+    .cap-code pre .num { color: var(--accent-orange); }
+
+    /* ==================== USC SPOTLIGHT ==================== */
+    .usc { padding: 100px 0; border-top: 1px solid rgba(18, 170, 255, 0.06); }
+    .usc-highlight { background: linear-gradient(135deg, rgba(18, 170, 255, 0.06) 0%, rgba(99, 102, 241, 0.04) 100%); border: 1px solid rgba(18, 170, 255, 0.1); border-radius: 20px; padding: 48px 40px; margin-bottom: 40px; }
+    .usc-highlight h3 { font-size: 24px; font-weight: 800; color: var(--white); margin-bottom: 16px; }
+    .usc-highlight > p { font-size: 15px; color: var(--gray-400); line-height: 1.7; max-width: 600px; margin-bottom: 32px; }
+    .usc-arch { background: var(--code-bg); border-radius: 12px; padding: 24px 28px; font-family: var(--font-mono); font-size: 13px; color: var(--gray-200); line-height: 1.6; overflow-x: auto; white-space: pre; margin-bottom: 32px; }
+    .usc-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .usc-feat { background: var(--navy-card); border: 1px solid rgba(18, 170, 255, 0.06); border-radius: 12px; padding: 24px; }
+    .usc-feat h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .usc-feat p { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+    .usc-comparison { width: 100%; border-collapse: collapse; background: var(--navy-card); border-radius: 14px; overflow: hidden; border: 1px solid rgba(18, 170, 255, 0.06); }
+    .usc-comparison th { text-align: left; padding: 14px 24px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); background: rgba(0, 0, 0, 0.25); font-weight: 600; }
+    .usc-comparison td { padding: 14px 24px; font-size: 14px; border-top: 1px solid rgba(18, 170, 255, 0.04); color: var(--gray-200); }
+    .usc-comparison td:first-child { color: var(--gray-400); font-weight: 500; }
+    .usc-comparison .check { color: #4ade80; }
+    .usc-comparison .cross { color: #f87171; }
+
+    /* ==================== LIVE EXAMPLES ==================== */
+    .examples { padding: 100px 0; }
+    .examples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+    /* TERMINAL */
+    .terminal { background: #131a27; border-radius: 14px; border: 1px solid rgba(18, 170, 255, 0.08); overflow: hidden; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(18, 170, 255, 0.04); }
+    .terminal-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #0f1520; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    .terminal-dots { display: flex; gap: 6px; flex-shrink: 0; }
+    .terminal-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .terminal-dots span:nth-child(1) { background: #ff5f57; }
+    .terminal-dots span:nth-child(2) { background: #febc2e; }
+    .terminal-dots span:nth-child(3) { background: #28c840; }
+    .terminal-tabs { display: flex; gap: 2px; align-items: center; margin-left: 4px; }
+    .terminal-tab { padding: 5px 14px; background: transparent; border: 1px solid transparent; border-radius: 6px; color: var(--gray-400); font-family: var(--font-sans); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .terminal-tab.active { border-color: var(--gray-600); color: var(--gray-100); }
+    .terminal-tab:hover:not(.active) { color: var(--gray-200); }
+    .terminal-body { position: relative; padding: 22px 22px 18px; min-height: 160px; }
+    .terminal-panel { display: none; }
+    .terminal-panel.active { display: block; }
+    .terminal-body code { font-family: var(--font-mono); font-size: 13px; color: var(--gray-200); line-height: 1.8; display: block; }
+    .terminal-body .comment { color: #3d4f63; }
+    .terminal-body .prompt { color: var(--blue); user-select: none; }
+    .terminal-body .ai-out { color: #4ade80; }
+    .terminal-copy { position: absolute; bottom: 16px; right: 16px; background: none; border: none; color: var(--gray-600); cursor: pointer; padding: 4px; transition: color 0.2s; display: flex; }
+    .terminal-copy:hover { color: var(--gray-200); }
+
+    /* ==================== QUICKSTART ==================== */
+    .quickstart { padding: 80px 0 100px; border-top: 1px solid rgba(18, 170, 255, 0.06); }
+    .qs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .qs-left h2 { font-size: 38px; font-weight: 800; color: var(--white); letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+    .qs-left p { font-size: 15px; color: var(--gray-400); line-height: 1.7; margin-bottom: 24px; }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(18, 170, 255, 0.06);
-      padding: 36px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-left img {
-      height: 18px;
-      opacity: 0.4;
-    }
-
-    .footer-left span {
-      font-size: 13px;
-      color: var(--gray-600);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--gray-600);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--gray-400);
-    }
+    footer { border-top: 1px solid rgba(18, 170, 255, 0.06); padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-left { display: flex; align-items: center; gap: 10px; }
+    .footer-left img { height: 18px; opacity: 0.4; }
+    .footer-left span { font-size: 13px; color: var(--gray-600); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--gray-600); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gray-400); }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .hero-left h1 {
-        font-size: 36px;
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .qs-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .qs-left h2 {
-        font-size: 28px;
-      }
-
-      .stats-inner {
-        gap: 24px;
-      }
-
-      .stats-divider {
-        display: none;
-      }
-
-      .nav-pill:not(.nav-cta) {
-        display: none;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .terminal-tabs {
-        flex-wrap: wrap;
-      }
-
-      .terminal-body {
-        padding: 14px;
-      }
-
-      .terminal-body code {
-        font-size: 11px;
-      }
+      .hero h1 { font-size: 36px; }
+      .workflow-steps { grid-template-columns: 1fr; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .usc-features { grid-template-columns: 1fr; }
+      .examples-grid { grid-template-columns: 1fr; gap: 32px; }
+      .qs-grid { grid-template-columns: 1fr; gap: 32px; }
+      .qs-left h2 { font-size: 28px; }
+      .nav-pill:not(.nav-cta) { display: none; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .terminal-tabs { flex-wrap: wrap; }
+      .terminal-body { padding: 14px; }
+      .terminal-body code { font-size: 11px; }
+      .usc-highlight { padding: 28px 20px; }
+      .hero-actions { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -769,275 +209,402 @@
   <nav>
     <div class="container">
       <a href="#" class="nav-logo">
-        <img src="assets/symbol.png" alt="Creditcoin">
-        Creditcoin-dapp-skill
+        <img src="../assets/symbol.png" alt="Creditcoin">
+        Creditcoin dApp Skill
       </a>
       <div class="nav-links">
-        <a href="#demo" class="nav-pill">Demo</a>
-        <a href="#services" class="nav-pill">Features</a>
-        <a href="#quickstart" class="nav-pill">Quick Start</a>
-        <a href="#stack" class="nav-pill">Stack</a>
+        <a href="#workflow" class="nav-pill">How It Works</a>
+        <a href="#build" class="nav-pill">What You Build</a>
+        <a href="#usc" class="nav-pill">USC</a>
+        <a href="#quickstart" class="nav-pill">Install</a>
         <a href="https://github.com/phamdat721101/creditcoin-dapp-skills" class="nav-pill nav-cta">GitHub</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ==================== HERO ==================== -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <h1>Build dApps on<br><span class="gradient-text">Creditcoin</span> with AI.</h1>
-          <p>A Claude Code skill with deep knowledge of Solidity, Real World Assets, and Universal Smart Contracts (USC)
-            for trustless cross-chain dApps. Go from idea to deployed multichain application.</p>
-          <div class="hero-actions">
-            <a href="#quickstart" class="btn btn-primary">
-              Get Started
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </a>
-            <a href="https://github.com/phamdat721101/creditcoin-dapp-skills" class="btn btn-ghost">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              View Source
-            </a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="hero-feature">
-            <div class="hero-feature-icon">
-              <!-- Orbit icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M20.341 6.484A10 10 0 0 1 10.266 21.85" />
-                <path d="M3.659 17.516A10 10 0 0 1 13.74 2.152" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-            </div>
-            <div class="hero-feature-text">
-              <h4>Solidity Contracts</h4>
-              <p>Write EVM-compatible contracts using standard Solidity tools.</p>
-            </div>
-          </div>
-          <div class="hero-feature">
-            <div class="hero-feature-icon">
-              <!-- LayoutDashboard icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect width="7" height="9" x="3" y="3" rx="1" />
-                <rect width="7" height="5" x="14" y="3" rx="1" />
-                <rect width="7" height="9" x="14" y="12" rx="1" />
-                <rect width="7" height="5" x="3" y="16" rx="1" />
-              </svg>
-            </div>
-            <div class="hero-feature-text">
-              <h4>Creditcoin JS SDK</h4>
-              <p>Type-safe interaction with the Creditcoin ledger (CTC/EVM).</p>
-            </div>
-          </div>
-          <div class="hero-feature">
-            <div class="hero-feature-icon">
-              <!-- Container icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 2v20M2 12h20" />
-              </svg>
-            </div>
-            <div class="hero-feature-text">
-              <h4>Credit History</h4>
-              <p>Record and verify credit performance on-chain securely.</p>
-            </div>
-          </div>
-          <div class="hero-feature">
-            <div class="hero-feature-icon">
-              <!-- Cross-chain icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="6" cy="6" r="3" />
-                <circle cx="18" cy="18" r="3" />
-                <path d="M6 21V9a9 9 0 0 0 9 9" />
-              </svg>
-            </div>
-            <div class="hero-feature-text">
-              <h4>USC Cross-Chain</h4>
-              <p>Trustless multichain with STARK proof verification.</p>
-            </div>
-          </div>
-        </div>
+      <h1>Build <span class="gradient-text">Creditcoin</span> dApps<br>with an AI Agent.</h1>
+      <p>Install a skill. Prompt Claude Code. Get production-ready Solidity contracts, cross-chain USC integrations,
+        and frontends — from idea to deployed dApp.</p>
+      <div class="hero-actions">
+        <a href="#quickstart" class="btn btn-primary">
+          Get Started
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a href="#usc" class="btn btn-ghost">Explore USC</a>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats-inner">
-        <div class="stat">
-          <div class="stat-value">6<span class="blue">+</span></div>
-          <div class="stat-label">Reference Docs</div>
-        </div>
-        <div class="stats-divider"></div>
-        <div class="stat">
-          <div class="stat-value">2</div>
-          <div class="stat-label">Contract Languages</div>
-        </div>
-        <div class="stats-divider"></div>
-        <div class="stat">
-          <div class="stat-value">3</div>
-          <div class="stat-label">Deploy Targets</div>
-        </div>
-        <div class="stats-divider"></div>
-        <div class="stat">
-          <div class="stat-value">v0.10<span class="blue">+</span></div>
-          <div class="stat-label">Stylus SDK</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEMO VIDEO -->
-  <section class="demo" id="demo">
+  <!-- ==================== AI WORKFLOW ==================== -->
+  <section class="workflow" id="workflow">
     <div class="container">
       <div class="section-header" style="text-align:center;">
-        <div class="services-label">See It In Action</div>
-        <h2>From zero to deployed dApp.</h2>
-        <p style="margin:0 auto;">Watch the skill scaffold, build, and deploy a Creditcoin dApp in a single session.</p>
+        <div class="section-label">How It Works</div>
+        <h2>Three steps. Zero boilerplate.</h2>
+        <p style="margin:0 auto;">The AI skill gives Claude deep Creditcoin knowledge — contracts, SDK patterns, USC cross-chain — so you build faster.</p>
       </div>
-      <div class="demo-video">
-        <!-- Placeholder for future Creditcoin demo -->
-        <div
-          style="background: #1a1a1a; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid #333;">
-          <div style="text-align: center;">
-            <p style="color: #888; margin-bottom: 10px;">Demo Video Coming Soon</p>
-            <p style="color: #555; font-size: 0.9em;">(Waiting for Creditcoin RWA Demo)</p>
-          </div>
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="workflow-number">1</div>
+          <h3>Install the Skill</h3>
+          <p>One command adds Creditcoin knowledge to Claude Code. Covers Solidity, Ethers.js, and USC.</p>
+          <code><span style="color:var(--gray-600);">$</span> bash &lt;(curl -s https://raw.githubusercontent.com/phamdat721101/creditcoin-dapp-skills/main/install.sh)</code>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-number">2</div>
+          <h3>Prompt What You Need</h3>
+          <p>Describe your dApp in plain English. Claude understands Creditcoin's architecture, RPC endpoints, and chain IDs.</p>
+          <code><span style="color:var(--blue);">&gt;</span> Build a cross-chain credit scoring system with soulbound NFT tiers</code>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-number">3</div>
+          <h3>Get Production Code</h3>
+          <p>Claude generates contracts, deployment scripts, and frontend integration — following Creditcoin best practices.</p>
+          <code><span style="color:#4ade80;">&#10003;</span> CrossChainCreditScore.sol<br><span style="color:#4ade80;">&#10003;</span> CreditTierNFT.sol<br><span style="color:#4ade80;">&#10003;</span> deploy-credit-score.ts</code>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
+  <!-- ==================== WHAT YOU CAN BUILD ==================== -->
+  <section class="capabilities" id="build">
     <div class="container">
       <div class="section-header">
-        <div class="services-label">What It Does</div>
-        <h2>Everything you need to<br>build on Creditcoin.</h2>
-        <p>The skill covers the full development lifecycle from Solidity contracts to frontend integration.</p>
+        <div class="section-label">What You Can Build</div>
+        <h2>From simple contracts<br>to cross-chain systems.</h2>
+        <p>Each capability includes real code that Claude generates. Click to preview.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <rect width="18" height="18" x="3" y="3" rx="2" />
-              <path d="M11 9h4a2 2 0 0 0 2-2V3" />
-              <circle cx="9" cy="9" r="2" />
-              <path d="M7 21v-4a2 2 0 0 1 2-2h4" />
-              <circle cx="15" cy="15" r="2" />
-            </svg>
+      <div class="cap-grid">
+
+        <!-- Card 1: Solidity Contracts -->
+        <div class="cap-card">
+          <div class="cap-card-header" onclick="toggleCode(this)">
+            <div class="cap-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="M11 9h4a2 2 0 0 0 2-2V3" /><circle cx="9" cy="9" r="2" />
+                <path d="M7 21v-4a2 2 0 0 1 2-2h4" /><circle cx="15" cy="15" r="2" />
+              </svg>
+            </div>
+            <div>
+              <h3>Solidity Smart Contracts</h3>
+              <p>EVM-compatible contracts for loans, credit records, and RWA tokenization. Deploy with Hardhat or Foundry.</p>
+            </div>
           </div>
-          <h3>Solidity Contracts</h3>
-          <p>Write EVM-compatible smart contracts in Solidity. Deploy with Hardhat or Foundry to the Creditcoin EVM
-            environment.</p>
+          <button class="cap-toggle" onclick="toggleCode(this)">View generated code</button>
+          <div class="cap-code">
+            <pre><span class="cm">// Prompt: "Create a loan contract for Creditcoin"</span>
+
+<span class="kw">contract</span> <span class="tp">CreditRecord</span> {
+    <span class="kw">struct</span> <span class="tp">Loan</span> {
+        <span class="tp">address</span> borrower;
+        <span class="tp">uint256</span> amount;
+        <span class="tp">bool</span> repaid;
+    }
+
+    <span class="kw">mapping</span>(<span class="tp">uint256</span> => <span class="tp">Loan</span>) <span class="kw">public</span> loans;
+    <span class="tp">uint256</span> <span class="kw">public</span> loanCount;
+
+    <span class="kw">function</span> <span class="fn">createLoan</span>(<span class="tp">uint256</span> _amount) <span class="kw">public</span> {
+        loanCount++;
+        loans[loanCount] = <span class="tp">Loan</span>(msg.sender, _amount, <span class="kw">false</span>);
+    }
+}</pre>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M12 20v2" />
-              <path d="M12 2v2" />
-              <path d="M17 20v2" />
-              <path d="M17 2v2" />
-              <rect x="4" y="4" width="16" height="16" rx="2" />
-              <rect x="8" y="8" width="8" height="8" rx="1" />
-            </svg>
+
+        <!-- Card 2: Frontend SDK -->
+        <div class="cap-card">
+          <div class="cap-card-header" onclick="toggleCode(this)">
+            <div class="cap-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20v2" /><path d="M12 2v2" /><path d="M17 20v2" /><path d="M17 2v2" />
+                <rect x="4" y="4" width="16" height="16" rx="2" /><rect x="8" y="8" width="8" height="8" rx="1" />
+              </svg>
+            </div>
+            <div>
+              <h3>Ethers.js Frontend Integration</h3>
+              <p>Type-safe contract interaction, MetaMask wallet connection, and transaction management.</p>
+            </div>
           </div>
-          <h3>Ethers.js / Web3.js</h3>
-          <p>Interact with the Creditcoin Network using standard Ethereum libraries. Manage wallets and submit
-            transactions effortlessly.</p>
+          <button class="cap-toggle" onclick="toggleCode(this)">View generated code</button>
+          <div class="cap-code">
+            <pre><span class="cm">// Prompt: "Connect to my deployed contract"</span>
+
+<span class="kw">import</span> { ethers } <span class="kw">from</span> <span class="str">"ethers"</span>;
+
+<span class="kw">const</span> provider = <span class="kw">new</span> ethers.<span class="fn">JsonRpcProvider</span>(
+  <span class="str">"https://mainnet.creditcoin.network"</span>
+);
+
+<span class="kw">const</span> contract = <span class="kw">new</span> ethers.<span class="fn">Contract</span>(
+  address, abi, signer
+);
+
+<span class="kw">const</span> tx = <span class="kw">await</span> contract.<span class="fn">createLoan</span>(
+  ethers.<span class="fn">parseEther</span>(<span class="str">"1000"</span>)
+);
+<span class="kw">await</span> tx.<span class="fn">wait</span>();</pre>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="m10.586 5.414-5.172 5.172" />
-              <path d="m18.586 13.414-5.172 5.172" />
-              <circle cx="12" cy="12" r="2" />
-            </svg>
+
+        <!-- Card 3: Credit History -->
+        <div class="cap-card">
+          <div class="cap-card-header" onclick="toggleCode(this)">
+            <div class="cap-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" />
+                <path d="M10 21.9V14L2.1 9.1" /><path d="m10 14 11.9-6.9" />
+              </svg>
+            </div>
+            <div>
+              <h3>On-Chain Credit History</h3>
+              <p>Record and verify credit performance transparently on the Creditcoin ledger.</p>
+            </div>
           </div>
-          <h3>MetaMask Integration</h3>
-          <p>Seamlessly connect to MetaMask for managing CTC tokens and user signing.</p>
+          <button class="cap-toggle" onclick="toggleCode(this)">View generated code</button>
+          <div class="cap-code">
+            <pre><span class="cm">// Prompt: "Add credit scoring to my contract"</span>
+
+<span class="kw">function</span> <span class="fn">calculateScore</span>(<span class="tp">address</span> user)
+    <span class="kw">public</span> <span class="kw">view</span> <span class="kw">returns</span> (<span class="tp">uint256</span>)
+{
+    <span class="tp">CreditProfile</span> <span class="kw">memory</span> p = profiles[user];
+    <span class="tp">uint256</span> score = <span class="num">300</span>;  <span class="cm">// Base score</span>
+    score += p.onTimePayments * <span class="num">15</span>;
+    score -= p.latePayments * <span class="num">30</span>;
+    score += uniqueChains * <span class="num">25</span>;
+    <span class="kw">return</span> score > <span class="num">850</span> ? <span class="num">850</span> : score;
+}</pre>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" />
-              <path d="M10 21.9V14L2.1 9.1" />
-              <path d="m10 14 11.9-6.9" />
-            </svg>
+
+        <!-- Card 4: USC Cross-Chain -->
+        <div class="cap-card" style="border-color: rgba(18, 170, 255, 0.15);">
+          <div class="cap-card-header" onclick="toggleCode(this)">
+            <div class="cap-icon" style="background: linear-gradient(135deg, rgba(18, 170, 255, 0.2), rgba(34, 211, 238, 0.15));">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" /><circle cx="12" cy="18" r="3" />
+                <path d="M6 9v3a6 6 0 0 0 6 6" /><path d="M18 9v3a6 6 0 0 1-6 6" />
+              </svg>
+            </div>
+            <div>
+              <h3>USC Cross-Chain Verification</h3>
+              <p>Trustless multi-chain data with STARK proofs. Aggregate activity from ETH, BTC, SOL, and Polygon.</p>
+            </div>
           </div>
-          <h3>Credit History</h3>
-          <p>Automatic verification and recording of credit history on the Creditcoin ledger.</p>
+          <button class="cap-toggle" onclick="toggleCode(this)">View generated code</button>
+          <div class="cap-code">
+            <pre><span class="cm">// Prompt: "Verify a cross-chain repayment"</span>
+
+<span class="kw">function</span> <span class="fn">recordRepayment</span>(
+    <span class="tp">bytes32</span> queryId,
+    <span class="tp">address</span> proverContract
+) <span class="kw">external</span> onlyRelayer {
+    <span class="tp">bytes</span> <span class="kw">memory</span> result =
+        <span class="fn">_processOracleResults</span>(proverContract, queryId);
+
+    <span class="tp">address</span> borrower = <span class="fn">_extractAddress</span>(result, <span class="num">0</span>);
+    <span class="tp">uint256</span> chainId  = <span class="fn">_extractChainId</span>(result, <span class="num">32</span>);
+    <span class="tp">bool</span> onTime      = <span class="fn">_extractUint256</span>(result, <span class="num">64</span>) == <span class="num">1</span>;
+
+    <span class="cm">// STARK-verified, no oracles needed</span>
+}</pre>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path
-                d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" />
-            </svg>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== USC SPOTLIGHT ==================== -->
+  <section class="usc" id="usc">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">USC Spotlight</div>
+        <h2>Universal Smart Contracts:<br>trustless cross-chain by default.</h2>
+        <p>USC is what makes Creditcoin fundamentally different. No bridges. No oracles. Just cryptographic proof.</p>
+      </div>
+
+      <!-- Architecture -->
+      <div class="usc-highlight">
+        <h3>How USC Works</h3>
+        <p>Events on any source chain are attested, proven with STARK proofs, and verified natively on Creditcoin — all without trusted intermediaries.</p>
+        <div class="usc-arch">Source Chain          Attestation         Proof Generation       Creditcoin USC
+(ETH/BTC/SOL/POL)     Layer               (STARK)              Contract
+
+  Repayment   ──────>  Monitor   ──────>  Generate    ──────>  Verify &
+  Event                 & Attest           STARK Proof          Update Score
+
+  Collateral  ──────>  Monitor   ──────>  Generate    ──────>  Verify &
+  Deposit               & Attest           STARK Proof          Lock Value</div>
+
+        <!-- 4 Features -->
+        <div class="usc-features">
+          <div class="usc-feat">
+            <h4>Unified Credit Identity</h4>
+            <p>Aggregate repayment history from 4 chains into one credit score. The AI skill generates the full contract system including soulbound NFT tiers.</p>
           </div>
-          <h3>Testing & Simulation</h3>
-          <p>Test your Solidity contracts locally using Hardhat Network. Simulate transactions and verify logic.</p>
+          <div class="usc-feat">
+            <h4>Trustless Bridges</h4>
+            <p>Burn/mint assets across chains with STARK proof verification. No multisig, no trusted operators — just math.</p>
+          </div>
+          <div class="usc-feat">
+            <h4>Cross-Chain Collateral</h4>
+            <p>Lock ETH on Ethereum, borrow on Creditcoin. The proof verifies the deposit without any oracle dependency.</p>
+          </div>
+          <div class="usc-feat">
+            <h4>Native State Reads</h4>
+            <p>Read DeFi rates, balances, and positions from other chains directly — no third-party data feeds required.</p>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-            </svg>
-          </div>
-          <h3>Real World Assets</h3>
-          <p>Build applications that tokenize and manage Real World Assets (RWA) with transparent credit history.</p>
+      </div>
+
+      <!-- Comparison Table -->
+      <table class="usc-comparison">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Traditional Bridges</th>
+            <th>USC (Creditcoin)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Trust Model</td>
+            <td><span class="cross">Trusted operators / multisig</span></td>
+            <td><span class="check">Cryptographic (STARK proofs)</span></td>
+          </tr>
+          <tr>
+            <td>Security</td>
+            <td><span class="cross">Bridge exploits ($2B+ lost)</span></td>
+            <td><span class="check">Math-based — no attack surface</span></td>
+          </tr>
+          <tr>
+            <td>Oracle Dependency</td>
+            <td><span class="cross">Requires external oracles</span></td>
+            <td><span class="check">None — native verification</span></td>
+          </tr>
+          <tr>
+            <td>Supported Chains</td>
+            <td>Chain-specific implementations</td>
+            <td><span class="check">ETH, BTC, SOL, Polygon natively</span></td>
+          </tr>
+          <tr>
+            <td>State Access</td>
+            <td><span class="cross">Limited to events</span></td>
+            <td><span class="check">Full cross-chain state reads</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE EXAMPLES ==================== -->
+  <section class="examples" id="examples">
+    <div class="container">
+      <div class="examples-grid">
+        <div>
+          <div class="section-label">Live Examples</div>
+          <h2 style="font-size:38px; font-weight:800; color:var(--white); letter-spacing:-0.03em; line-height:1.15; margin-bottom:16px;">See what the AI<br>skill generates.</h2>
+          <p style="font-size:15px; color:var(--gray-400); line-height:1.7; margin-bottom:24px;">Real prompts, real output. Each tab shows a different Creditcoin development task handled by the AI agent.</p>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round">
-              <circle cx="6" cy="6" r="3" />
-              <circle cx="18" cy="6" r="3" />
-              <circle cx="12" cy="18" r="3" />
-              <path d="M6 9v3a6 6 0 0 0 6 6" />
-              <path d="M18 9v3a6 6 0 0 1-6 6" />
-            </svg>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="terminal-tabs">
+              <button class="terminal-tab active" data-group="examples" data-tab="ex-scaffold">Scaffold</button>
+              <button class="terminal-tab" data-group="examples" data-tab="ex-contract">Contract</button>
+              <button class="terminal-tab" data-group="examples" data-tab="ex-usc">USC</button>
+              <button class="terminal-tab" data-group="examples" data-tab="ex-deploy">Deploy</button>
+            </div>
           </div>
-          <h3>USC Cross-Chain</h3>
-          <p>Build trustless multichain dApps using Universal Smart Contracts with STARK proof verification.</p>
+          <div class="terminal-body">
+            <!-- Scaffold -->
+            <div class="terminal-panel active" id="tab-ex-scaffold">
+              <code>
+<span class="prompt">&gt; </span>Help me start a new Creditcoin dApp<br>
+<br>
+<span class="ai-out">Creating project structure...</span><br>
+<span class="ai-out">  contracts/CreditRecord.sol</span><br>
+<span class="ai-out">  src/components/WalletConnect.tsx</span><br>
+<span class="ai-out">  hardhat.config.ts (Chain ID: 102031)</span><br>
+<span class="ai-out">  package.json</span><br>
+<br>
+<span class="comment"># Full project ready in seconds</span>
+              </code>
+            </div>
+            <!-- Contract -->
+            <div class="terminal-panel" id="tab-ex-contract">
+              <code>
+<span class="prompt">&gt; </span>Write a loan contract with credit history<br>
+<br>
+<span class="ai-out">Generated contracts/LoanWithHistory.sol</span><br>
+<span class="ai-out">  - createLoan(amount, duration)</span><br>
+<span class="ai-out">  - repayLoan(loanId)</span><br>
+<span class="ai-out">  - getCreditScore(borrower) -> uint256</span><br>
+<span class="ai-out">  - Events: LoanCreated, LoanRepaid</span><br>
+<br>
+<span class="comment"># Follows Creditcoin RWA patterns</span>
+              </code>
+            </div>
+            <!-- USC -->
+            <div class="terminal-panel" id="tab-ex-usc">
+              <code>
+<span class="prompt">&gt; </span>Build cross-chain credit scoring<br>
+<br>
+<span class="ai-out">Generated 3 contracts:</span><br>
+<span class="ai-out">  ICreditScore.sol (interface)</span><br>
+<span class="ai-out">  CrossChainCreditScore.sol</span><br>
+<span class="ai-out">    - STARK proof verification</span><br>
+<span class="ai-out">    - 4-chain repayment tracking</span><br>
+<span class="ai-out">    - Score: 300-850 range</span><br>
+<span class="ai-out">  CreditTierNFT.sol (soulbound)</span><br>
+<br>
+<span class="comment"># USC-powered, no oracles needed</span>
+              </code>
+            </div>
+            <!-- Deploy -->
+            <div class="terminal-panel" id="tab-ex-deploy">
+              <code>
+<span class="prompt">&gt; </span>Deploy my contracts to testnet<br>
+<br>
+<span class="ai-out">Generated scripts/deploy.ts</span><br>
+<span class="ai-out">  Network: Creditcoin Testnet (102030)</span><br>
+<span class="ai-out">  RPC: rpc.testnet.creditcoin.network</span><br>
+<br>
+<span class="ai-out">Deploying...</span><br>
+<span class="ai-out">  CreditScore: 0x1a2b...3c4d</span><br>
+<span class="ai-out">  TierNFT:     0x5e6f...7g8h</span><br>
+<br>
+<span class="comment"># Testnet faucet: Creditcoin Discord</span>
+              </code>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- QUICKSTART -->
+  <!-- ==================== QUICKSTART ==================== -->
   <section class="quickstart" id="quickstart">
     <div class="container">
       <div class="qs-grid">
         <div class="qs-left">
-          <div class="services-label">Quick Start</div>
+          <div class="section-label">Quick Start</div>
           <h2>Install the skill,<br>start building.</h2>
-          <p>One command installs everything. Claude Code automatically loads the skill and its reference docs when you
-            ask about Creditcoin development.</p>
+          <p>One command gives Claude Code deep Creditcoin knowledge — Solidity patterns, USC cross-chain, RPC config, and deployment scripts.</p>
           <a href="https://github.com/phamdat721101/creditcoin-dapp-skills" class="btn btn-ghost">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
             View on GitHub
           </a>
@@ -1049,22 +616,19 @@
                 <span></span><span></span><span></span>
               </div>
               <div class="terminal-tabs">
-                <button class="terminal-tab active" data-tab="one-liner">One-liner</button>
-                <button class="terminal-tab" data-tab="manual">Manual</button>
-                <button class="terminal-tab" data-tab="usage">Usage</button>
-                <button class="terminal-tab" data-tab="usc">USC</button>
+                <button class="terminal-tab active" data-group="install" data-tab="one-liner">One-liner</button>
+                <button class="terminal-tab" data-group="install" data-tab="manual">Manual</button>
               </div>
             </div>
             <div class="terminal-body">
-              <!-- ONE-LINER -->
               <div class="terminal-panel active" id="tab-one-liner">
                 <code>
-                    <span class="comment"># Installs to ~/.claude/skills/creditcoin-dapp-skill</span><br>
-                    <span class="prompt">$ </span>bash &lt;(curl -s https://raw.githubusercontent.com/<br>&nbsp;&nbsp;phamdat721101/creditcoin-dapp-skill/main/install.sh)<br>
-                    <br>
-                    <span class="comment"># Then start Claude Code</span><br>
-                    <span class="prompt">$ </span>claude
-                  </code>
+<span class="comment"># Installs to ~/.claude/skills/</span><br>
+<span class="prompt">$ </span>bash &lt;(curl -s https://raw.githubusercontent.com/<br>&nbsp;&nbsp;phamdat721101/creditcoin-dapp-skills/main/install.sh)<br>
+<br>
+<span class="comment"># Then start Claude Code</span><br>
+<span class="prompt">$ </span>claude
+                </code>
                 <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -1072,50 +636,14 @@
                   </svg>
                 </button>
               </div>
-
-              <!-- MANUAL -->
               <div class="terminal-panel" id="tab-manual">
                 <code>
-                    <span class="comment"># Clone the repository</span><br>
-                    <span class="prompt">$ </span>git clone https://github.com/<br>&nbsp;&nbsp;phamdat721101/creditcoin-dapp-skill.git \<br>&nbsp;&nbsp;~/.claude/skills/creditcoin-dapp-skill<br>
-                    <br>
-                    <span class="comment"># Start Claude Code</span><br>
-                    <span class="prompt">$ </span>claude
-                  </code>
-                <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="9" y="9" width="13" height="13" rx="2" />
-                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                  </svg>
-                </button>
-              </div>
-
-              <!-- USAGE -->
-              <div class="terminal-panel" id="tab-usage">
-                <code>
-                    <span class="comment"># Ask Claude to help you build</span><br>
-                    <span class="prompt">&gt; </span>Create a Creditcoin contract for loan<br>
-                    <span class="prompt">&gt; </span>Explain Solidity language features<br>
-                    <span class="prompt">&gt; </span>How do I record credit history?<br>
-                    <span class="prompt">&gt; </span>Build a frontend with Ethers.js
-                  </code>
-                <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="9" y="9" width="13" height="13" rx="2" />
-                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                  </svg>
-                </button>
-              </div>
-
-              <!-- USC -->
-              <div class="terminal-panel" id="tab-usc">
-                <code>
-                    <span class="comment"># Build cross-chain dApps with USC</span><br>
-                    <span class="prompt">&gt; </span>Build USC contract for credit aggregation<br>
-                    <span class="prompt">&gt; </span>Create trustless bridge with STARK proofs<br>
-                    <span class="prompt">&gt; </span>Implement cross-chain collateral system<br>
-                    <span class="prompt">&gt; </span>Unified credit identity across 3 chains
-                  </code>
+<span class="comment"># Clone the repository</span><br>
+<span class="prompt">$ </span>git clone https://github.com/<br>&nbsp;&nbsp;phamdat721101/creditcoin-dapp-skills.git \<br>&nbsp;&nbsp;~/.claude/skills/creditcoin-dapp-skill<br>
+<br>
+<span class="comment"># Start Claude Code</span><br>
+<span class="prompt">$ </span>claude
+                </code>
                 <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -1125,60 +653,8 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- STACK -->
-  <section class="stack" id="stack">
-    <div class="container">
-      <div class="section-header">
-        <div class="services-label">Tech Stack</div>
-        <h2>Opinionated defaults.<br>Override anything.</h2>
-      </div>
-      <table class="stack-table">
-        <thead>
-          <tr>
-            <th>Layer</th>
-            <th>Tool</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Smart Contracts</td>
-            <td>Solidity</td>
-            <td>EVM-compatible contract language</td>
-          </tr>
-          <tr>
-            <td>Client SDK</td>
-            <td>Ethers.js / Web3.js</td>
-            <td>Interacting with EVM contracts</td>
-          </tr>
-          <tr>
-            <td>Wallet</td>
-            <td>MetaMask</td>
-            <td>Managing assets and transactions</td>
-          </tr>
-          <tr>
-            <td>Compiler</td>
-            <td>Hardhat / Foundry</td>
-            <td>Compiles to EVM Bytecode</td>
-          </tr>
-          <tr>
-            <td>Runtime</td>
-            <td>Node.js 18+</td>
-            <td>Required environment</td>
-          </tr>
-          <tr>
-            <td>USC (Phase 2)</td>
-            <td>Universal Smart Contracts</td>
-            <td>Cross-chain with STARK proofs</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
@@ -1187,39 +663,47 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-left">
-          <img src="assets/logo.png" alt="Creditcoin">
+          <img src="../assets/logo.png" alt="Creditcoin">
           <span>creditcoin-dapp-skill</span>
         </div>
         <div class="footer-links">
           <a href="https://github.com/phamdat721101/creditcoin-dapp-skills">GitHub</a>
           <a href="https://docs.creditcoin.org">Creditcoin Docs</a>
           <a href="https://github.com/gluwa/creditcoin">Creditcoin GitHub</a>
-          <a href="https://discord.gg/creditcoin">Creditcoin Discord</a>
+          <a href="https://discord.gg/creditcoin">Discord</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Tabs
+    // Tab switching (supports multiple tab groups)
     document.querySelectorAll('.terminal-tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        document.querySelectorAll('.terminal-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.terminal-panel').forEach(p => p.classList.remove('active'));
+        const group = tab.dataset.group;
+        const container = tab.closest('.terminal');
+        container.querySelectorAll('.terminal-tab').forEach(t => t.classList.remove('active'));
+        container.querySelectorAll('.terminal-panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
       });
     });
 
-    // Copy
+    // Expandable code blocks
+    function toggleCode(el) {
+      const card = el.closest('.cap-card');
+      const code = card.querySelector('.cap-code');
+      const btn = card.querySelector('.cap-toggle');
+      code.classList.toggle('open');
+      btn.textContent = code.classList.contains('open') ? 'Hide code' : 'View generated code';
+    }
+
+    // Copy terminal content
     function copyTerminal(btn) {
       const panel = btn.closest('.terminal-panel');
       const code = panel.querySelector('code').innerText
-        .replace(/^\$ /gm, '')
-        .replace(/^> /gm, '')
-        .replace(/^# .*$/gm, '')
-        .replace(/\n{2,}/g, '\n')
-        .trim();
+        .replace(/^\$ /gm, '').replace(/^> /gm, '').replace(/^# .*$/gm, '')
+        .replace(/\n{2,}/g, '\n').trim();
       navigator.clipboard.writeText(code).then(() => {
         const svg = btn.innerHTML;
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg>';
