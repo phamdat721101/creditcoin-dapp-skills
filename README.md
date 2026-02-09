@@ -24,11 +24,12 @@ This skill gives Claude Code deep knowledge of the Creditcoin development stack 
 - **Deploy** using Hardhat, Foundry, or Remix
 - **Interact** with the Creditcoin ledger using Ethers.js and Web3.js
 - **Record** credit performance on-chain
+- **Build USC** cross-chain dApps with trustless multichain verification
 
 ## Quick Start
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/phamdat721101/creditcoin-dapp-skill/main/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/phamdat721101/creditcoin-dapp-skills/main/install.sh)
 ```
 
 Then start Claude Code and ask it to build something:
@@ -69,6 +70,15 @@ Once installed, start a Claude Code session and try:
 > Create a script to deploy my contract
 ```
 
+### USC Cross-Chain Examples
+
+```
+> Build a USC contract that aggregates credit history from Ethereum and Solana
+> Create a trustless bridge contract using STARK proof verification
+> Write a cross-chain collateral system where ETH backs Creditcoin loans
+> Implement a unified credit identity that tracks repayments across 3 chains
+```
+
 ## Skill structure
 
 ```
@@ -77,7 +87,9 @@ creditcoin-dapp-skill/
 ├── references/
 │   ├── creditcoin-smart-contract.md    # Solidity guide
 │   ├── creditcoin-client-sdk.md        # JS SDK guide
-│   └── creditcoin-setup.md             # Setup guide
+│   ├── creditcoin-setup.md             # Setup guide
+│   ├── usc-smart-contract.md           # USC contract guide
+│   └── usc-cross-chain.md              # Cross-chain patterns
 ├── install.sh
 ├── assets/
 │   └── logo.png

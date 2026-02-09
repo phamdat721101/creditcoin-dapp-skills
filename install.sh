@@ -3,7 +3,7 @@ set -e
 
 SKILL_NAME="creditcoin-dapp-skill"
 SKILL_DIR="$HOME/.claude/skills/$SKILL_NAME"
-REPO_URL="https://github.com/phamdat721101/creditcoin-dapp-skill.git"
+REPO_URL="https://github.com/phamdat721101/creditcoin-dapp-skills.git"
 
 echo "Installing $SKILL_NAME skill for Claude Code..."
 
