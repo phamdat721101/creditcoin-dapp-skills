@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creditcoin dApp Skill — Claude Code Skill for Building on Creditcoin Network</title>
   <meta name="description"
-    content="A Claude Code skill for building Real World Asset (RWA) dApps on Creditcoin Network with Solidity and Ethers.js. Scaffold, test, deploy, and integrate with Creditcoin.">
+    content="A Claude Code skill for building Real World Asset (RWA) and Universal Smart Contract (USC) cross-chain dApps on Creditcoin Network with Solidity and Ethers.js.">
   <link rel="icon" type="image" href="assets/symbol.png">
   <!-- Privacy-friendly analytics: no cookies, no personal data. See https://goatcounter.com -->
   <script data-goatcounter="https://creditcoin-dapp-skill.goatcounter.com/count" async
@@ -789,8 +789,8 @@
       <div class="hero-grid">
         <div class="hero-left">
           <h1>Build dApps on<br><span class="gradient-text">Creditcoin</span> with AI.</h1>
-          <p>A Claude Code skill with deep knowledge of Solidity, Real World Assets, and the full Creditcoin Network
-            toolchain. Go from idea to deployed RWA dApp.</p>
+          <p>A Claude Code skill with deep knowledge of Solidity, Real World Assets, and Universal Smart Contracts (USC)
+            for trustless cross-chain dApps. Go from idea to deployed multichain application.</p>
           <div class="hero-actions">
             <a href="#quickstart" class="btn btn-primary">
               Get Started
@@ -851,6 +851,21 @@
             <div class="hero-feature-text">
               <h4>Credit History</h4>
               <p>Record and verify credit performance on-chain securely.</p>
+            </div>
+          </div>
+          <div class="hero-feature">
+            <div class="hero-feature-icon">
+              <!-- Cross-chain icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="6" cy="6" r="3" />
+                <circle cx="18" cy="18" r="3" />
+                <path d="M6 21V9a9 9 0 0 0 9 9" />
+              </svg>
+            </div>
+            <div class="hero-feature-text">
+              <h4>USC Cross-Chain</h4>
+              <p>Trustless multichain with STARK proof verification.</p>
             </div>
           </div>
         </div>
@@ -992,6 +1007,20 @@
           <h3>Real World Assets</h3>
           <p>Build applications that tokenize and manage Real World Assets (RWA) with transparent credit history.</p>
         </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="6" cy="6" r="3" />
+              <circle cx="18" cy="6" r="3" />
+              <circle cx="12" cy="18" r="3" />
+              <path d="M6 9v3a6 6 0 0 0 6 6" />
+              <path d="M18 9v3a6 6 0 0 1-6 6" />
+            </svg>
+          </div>
+          <h3>USC Cross-Chain</h3>
+          <p>Build trustless multichain dApps using Universal Smart Contracts with STARK proof verification.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1023,6 +1052,7 @@
                 <button class="terminal-tab active" data-tab="one-liner">One-liner</button>
                 <button class="terminal-tab" data-tab="manual">Manual</button>
                 <button class="terminal-tab" data-tab="usage">Usage</button>
+                <button class="terminal-tab" data-tab="usc">USC</button>
               </div>
             </div>
             <div class="terminal-body">
@@ -1068,6 +1098,23 @@
                     <span class="prompt">&gt; </span>Explain Solidity language features<br>
                     <span class="prompt">&gt; </span>How do I record credit history?<br>
                     <span class="prompt">&gt; </span>Build a frontend with Ethers.js
+                  </code>
+                <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- USC -->
+              <div class="terminal-panel" id="tab-usc">
+                <code>
+                    <span class="comment"># Build cross-chain dApps with USC</span><br>
+                    <span class="prompt">&gt; </span>Build USC contract for credit aggregation<br>
+                    <span class="prompt">&gt; </span>Create trustless bridge with STARK proofs<br>
+                    <span class="prompt">&gt; </span>Implement cross-chain collateral system<br>
+                    <span class="prompt">&gt; </span>Unified credit identity across 3 chains
                   </code>
                 <button class="terminal-copy" onclick="copyTerminal(this)" title="Copy">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1124,6 +1171,11 @@
             <td>Runtime</td>
             <td>Node.js 18+</td>
             <td>Required environment</td>
+          </tr>
+          <tr>
+            <td>USC (Phase 2)</td>
+            <td>Universal Smart Contracts</td>
+            <td>Cross-chain with STARK proofs</td>
           </tr>
         </tbody>
       </table>
